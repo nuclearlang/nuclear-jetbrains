@@ -1,0 +1,312 @@
+{
+  "basics": {
+    "CodeLensEnabled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are shown as code lens"
+    },
+    "CodeLensHiddenUnder": {
+      "default": 3,
+      "description": "Threshold to show code lens for code metrics"
+    },
+    "ComplexityColorExtreme": {
+      "default": "#ff0000",
+      "description": "Color for the extreme complexity level"
+    },
+    "ComplexityColorHigh": {
+      "default": "#f44034",
+      "description": "Color for the high complexity level"
+    },
+    "ComplexityColorLow": {
+      "default": "#4bb14f",
+      "description": "Color for the low complexity level"
+    },
+    "ComplexityColorNormal": {
+      "default": "#ffc208",
+      "description": "Color for the normal complexity level"
+    },
+    "ComplexityLevelExtreme": {
+      "default": 25,
+      "description": "Threshold to determine extreme high complexity level"
+    },
+    "ComplexityLevelExtremeDescription": {
+      "default": "Bloody hell...",
+      "description": "Code lens message for extreme high complexity level"
+    },
+    "ComplexityLevelHigh": {
+      "default": 10,
+      "description": "Threshold to determine high complexity level"
+    },
+    "ComplexityLevelHighDescription": {
+      "default": "You must be kidding",
+      "description": "Code lens message for high complexity level"
+    },
+    "ComplexityLevelLow": {
+      "default": 0,
+      "description": "Threshold to determine low complexity level"
+    },
+    "ComplexityLevelLowDescription": {
+      "default": "Everything is cool!",
+      "description": "Code lens message for low complexity level"
+    },
+    "ComplexityLevelNormal": {
+      "default": 5,
+      "description": "Threshold to determine normal complexity level"
+    },
+    "ComplexityLevelNormalDescription": {
+      "default": "It's time to do something...",
+      "description": "Code lens message for normal complexity level"
+    },
+    "ComplexityTemplate": {
+      "default": "Complexity is {0} {1}",
+      "description": "Code lens message template {0} stands for the actual value {1} is for the complexity level description"
+    },
+    "DecorationModeEnabled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are shown as inline decoration"
+    },
+    "DecorationTemplate": {
+      "default": "<svg xmlns='http://www.w3.org/2000/svg' width='{{size}}px' height='{{size}}px' viewbox='0 0 {{size}} {{size}}'><rect width='{{size}}' height='{{size}}' style='fill:{{color}};stroke-width:1;stroke:#fff'/></svg>",
+      "description": "A flag which indicates whether code metrics are shown as inline decoration"
+    },
+    "DiagnosticsEnabled": {
+      "default": false,
+      "description": "A flag which indicates whether code metrics are shown as diagnostics"
+    },
+    "Exclude": {
+      "default": [],
+      "description": "Array of exclusion patterns (in glob format)"
+    },
+    "FileSizeLimitMB": {
+      "default": 0.5,
+      "description": "File size limit in megabytes, above this codemetrics are not going to be computed, use a negative number to allow any size"
+    },
+    "IgnoredFunctionNames": {
+      "default": [],
+      "description": "A set of function names to ignore from calculations"
+    },
+    "MetricsForArrowFunctionsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for arrow functions (can also be toggled via a command)"
+    },
+    "MetricsForClassDeclarationsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for class declarations"
+    },
+    "MetricsForConstructorsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for constructors"
+    },
+    "MetricsForEnumDeclarationsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for enum declarations"
+    },
+    "MetricsForFunctionDeclarationsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for function declarations"
+    },
+    "MetricsForFunctionExpressionsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for function expressions"
+    },
+    "MetricsForMethodDeclarationsToggled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are enabled for methods declarations"
+    },
+    "OverviewRulerModeEnabled": {
+      "default": true,
+      "description": "A flag which indicates whether code metrics are shown on the overview ruler"
+    }
+  },
+  "nodeconfiguration": {
+    "ArrayLiteralExpression": {
+      "default": 0,
+      "description": "Array literal expression",
+      "nuclear": "list literal `[a, b]`"
+    },
+    "ArrowFunction": {
+      "default": 1,
+      "description": "Arrow function",
+      "nuclear": "lambda `(x) => ...`"
+    },
+    "BinaryExpression": {
+      "default": 1,
+      "description": "Binary expression",
+      "nuclear": "`and` / `or`"
+    },
+    "BreakStatement": {
+      "default": 1,
+      "description": "Break statement",
+      "nuclear": "`break`"
+    },
+    "CallExpression": {
+      "default": 0,
+      "description": "Call expression",
+      "nuclear": "call `f(x)`"
+    },
+    "CaseClause": {
+      "default": 1,
+      "description": "Case clause",
+      "nuclear": "arm of a `match`"
+    },
+    "CatchClause": {
+      "default": 1,
+      "description": "Catch clause",
+      "nuclear": "`catch`"
+    },
+    "ClassDeclaration": {
+      "default": 0,
+      "description": "Class declaration",
+      "nuclear": "module or dialect kind (`User`, `stateless Home`)"
+    },
+    "ConditionalExpression": {
+      "default": 1,
+      "description": "Conditional expression",
+      "nuclear": "`cond ? a : b`"
+    },
+    "Constructor": {
+      "default": 1,
+      "description": "Constructor",
+      "nuclear": "`(params)` line of a module"
+    },
+    "ContinueStatement": {
+      "default": 1,
+      "description": "Continue statement",
+      "nuclear": "`continue`"
+    },
+    "DefaultClause": {
+      "default": 1,
+      "description": "Default case",
+      "nuclear": "`_` arm of a `match`"
+    },
+    "ElementAccessExpression": {
+      "default": 0,
+      "description": "Element access expression",
+      "nuclear": "`list[i]`"
+    },
+    "EnumDeclaration": {
+      "default": 1,
+      "description": "Enum declaration",
+      "nuclear": "enum"
+    },
+    "ForStatement": {
+      "default": 1,
+      "description": "For statement",
+      "nuclear": "`for x in xs`"
+    },
+    "FunctionDeclaration": {
+      "default": 1,
+      "description": "Function declaration",
+      "nuclear": "top-level function"
+    },
+    "GetAccessor": {
+      "default": 0,
+      "description": "Get accessor",
+      "nuclear": "`get name`"
+    },
+    "IfStatement": {
+      "default": 1,
+      "description": "If statement",
+      "nuclear": "`if` / `else if` without `else`, `if` inside a list"
+    },
+    "IfWithElseStatement": {
+      "default": 1,
+      "description": "If with else statement",
+      "nuclear": "`if` / `else if` followed by another branch"
+    },
+    "ImportDeclaration": {
+      "default": 0,
+      "description": "Import declaration",
+      "nuclear": "`use`"
+    },
+    "InterfaceDeclaration": {
+      "default": 0,
+      "description": "Interface declaration",
+      "nuclear": "module with signatures only"
+    },
+    "MethodDeclaration": {
+      "default": 1,
+      "description": "Method declaration",
+      "nuclear": "method of a module"
+    },
+    "MethodSignature": {
+      "default": 0,
+      "description": "Method signature",
+      "nuclear": "method without body"
+    },
+    "NewExpression": {
+      "default": 0,
+      "description": "New expression",
+      "nuclear": "`User(...)` (PascalCase call)"
+    },
+    "ObjectLiteralExpression": {
+      "default": 0,
+      "description": "Object literal expression",
+      "nuclear": "map literal `{ a: 1 }`"
+    },
+    "Parameter": {
+      "default": 0,
+      "description": "Parameter",
+      "nuclear": "parameter"
+    },
+    "PrefixUnaryExpression": {
+      "default": 0,
+      "description": "Prefix unary expression",
+      "nuclear": "`not x`, `-x`, `~call()`"
+    },
+    "PropertyAccessExpression": {
+      "default": 0,
+      "description": "Property access expression",
+      "nuclear": "`a.b`"
+    },
+    "PropertyDeclaration": {
+      "default": 0,
+      "description": "Property declaration",
+      "nuclear": "field of a module"
+    },
+    "ReturnStatement": {
+      "default": 1,
+      "description": "Return statement",
+      "nuclear": "`return`"
+    },
+    "SetAccessor": {
+      "default": 0,
+      "description": "Set accessor",
+      "nuclear": "`set name`"
+    },
+    "StringLiteral": {
+      "default": 0,
+      "description": "String literal",
+      "nuclear": "text without interpolation"
+    },
+    "SwitchStatement": {
+      "default": 1,
+      "description": "Switch statement",
+      "nuclear": "`match`"
+    },
+    "TemplateExpression": {
+      "default": 0,
+      "description": "Template expression",
+      "nuclear": "text with `${...}`"
+    },
+    "ThrowStatement": {
+      "default": 1,
+      "description": "Throw statement",
+      "nuclear": "`throw`"
+    },
+    "TryStatement": {
+      "default": 1,
+      "description": "Try statement",
+      "nuclear": "`try`"
+    },
+    "TypeAssertionExpression": {
+      "default": 0,
+      "description": "Type assertion expression",
+      "nuclear": "`x as T`"
+    },
+    "WhileStatement": {
+      "default": 1,
+      "description": "While statement",
+      "nuclear": "`while`"
+    }
+  }
+}

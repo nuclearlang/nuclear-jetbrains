@@ -1,0 +1,80 @@
+<idea-plugin>
+  <id>dev.nuclearlang</id>
+  <name>NuclearLang</name>
+  <version>0.37.2</version>
+  <vendor>NuclearLang</vendor>
+  <idea-version since-build="251"/>
+  <description><![CDATA[
+    <p>Support for NuclearLang (<code>.nuc</code>) files:</p>
+    <ul>
+      <li>Language server <code>nuclear-lsp</code>: diagnostics with quick fixes, semantic highlighting, hover,
+          completion, parameter info, go to declaration, find usages, rename and structure view.</li>
+      <li>Flutter dialect: kinds <code>stateless</code> / <code>stateful</code> and every Flutter and Dart name.</li>
+      <li>TextMate grammar shared with the VS Code extension.</li>
+      <li>Code metrics (a port of the CodeMetrics extension): an approximation of cyclomatic complexity as a code
+          lens above every function, method, constructor, lambda and module ("Complexity is 3 Everything is
+          cool!"), with the details on click and a colored mark per level.</li>
+      <li>Dragonfly projects work like a Flutter project: the app in <code>build/app</code> becomes a module
+          (device selector, <code>main.dart</code> run configuration, Run/Debug, which first run
+          <code>dragonfly build</code>) and saving a <code>.nuc</code>
+          transpiles the project and hot reloads the running app.</li>
+      <li>The <b>Chernobyl</b> and <b>Chernobyl Soft</b> themes (UI theme and editor color scheme).</li>
+      <li><b>Nuclear HTTP</b> tool window (Alt+Shift+H): every project of the workspace by platform, its components
+          and endpoints from the contract the compiler writes, the contracts a client declares with an Update action,
+          OpenAPI documents, environments and a request panel.</li>
+    </ul>
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lsp</depends>
+  <depends>org.jetbrains.plugins.textmate</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="dev.nuclearlang.chernobyl" path="/themes/Chernobyl.theme.json"/>
+    <themeProvider id="dev.nuclearlang.chernobyl-soft" path="/themes/ChernobylSoft.theme.json"/>
+    <platform.lsp.serverSupportProvider implementation="dev.nuclearlang.editor.NuclearLspServerSupportProvider"/>
+    <fileIconProvider implementation="dev.nuclearlang.editor.NuclearFileIconProvider"/>
+    <!-- ahead of / after icon plugins such as Atom Material Icons (unknown ids are ignored) -->
+    <iconProvider implementation="dev.nuclearlang.editor.NuclearFileIconProvider$Psi"
+                  order="first, before HiddenIconProvider, before DefaultFileIconProvider"/>
+    <projectViewNodeDecorator implementation="dev.nuclearlang.editor.NuclearFileIconProvider$Tree" order="last"/>
+    <applicationConfigurable parentId="tools" id="dev.nuclearlang.settings" displayName="NuclearLang"
+                             instance="dev.nuclearlang.editor.NuclearConfigurable"/>
+    <applicationConfigurable parentId="dev.nuclearlang.settings" id="dev.nuclearlang.codemetrics"
+                             displayName="Code Metrics" instance="dev.nuclearlang.editor.NuclearCodeMetricsConfigurable"/>
+    <editorFactoryListener implementation="dev.nuclearlang.editor.NuclearCodeMetricsMarkers"/>
+    <postStartupActivity implementation="dev.nuclearlang.editor.NuclearDragonfly$Startup"/>
+    <xdebugger.breakpointType implementation="dev.nuclearlang.editor.NuclearDebug$BreakpointType"/>
+    <toolWindow id="Nuclear Error" anchor="right" secondary="true" icon="AllIcons.General.Error"
+                factoryClass="dev.nuclearlang.editor.NuclearDebug$ErrorWindow"/>
+    <toolWindow id="Nuclear HTTP" anchor="left" icon="/icons/nuc.svg" factoryClass="dev.nuclearlang.editor.NuclearHttp$Window"/>
+    <notificationGroup id="NuclearLang" displayType="BALLOON"/>
+    <enterHandlerDelegate implementation="dev.nuclearlang.editor.NuclearCommentEnter"/>
+  </extensions>
+
+  <extensions defaultExtensionNs="com.intellij.textmate">
+    <bundleProvider implementation="dev.nuclearlang.editor.NuclearTextMateBundleProvider"/>
+  </extensions>
+
+  <projectListeners>
+    <listener class="dev.nuclearlang.editor.NuclearDragonfly$OnSave" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    <listener class="dev.nuclearlang.editor.NuclearDragonfly$BeforeRun" topic="com.intellij.execution.ExecutionListener"/>
+    <listener class="dev.nuclearlang.editor.NuclearDebug$MapWatcher" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    <listener class="dev.nuclearlang.editor.NuclearDebug$Breakpoints" topic="com.intellij.xdebugger.breakpoints.XBreakpointListener"/>
+    <listener class="dev.nuclearlang.editor.NuclearDebug$Sessions" topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+  </projectListeners>
+
+  <actions>
+    <group id="dev.nuclearlang.CodeMetrics" text="NuclearLang" popup="true">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <action id="dev.nuclearlang.ToggleCodeMetricsDisplayed" text="Toggle code metrics"
+              class="dev.nuclearlang.editor.NuclearCodeMetricsActions$ToggleDisplayed"/>
+      <action id="dev.nuclearlang.ToggleCodeMetricsForArrowFunctions" text="Toggle code lenses for arrow functions"
+              class="dev.nuclearlang.editor.NuclearCodeMetricsActions$ToggleArrowFunctions"/>
+      <action id="dev.nuclearlang.HttpWindow" text="Nuclear HTTP" description="Endpoints of every project, contracts and an HTTP client"
+              class="dev.nuclearlang.editor.NuclearHttp$Open">
+        <keyboard-shortcut keymap="$default" first-keystroke="alt shift H"/>
+      </action>
+    </group>
+  </actions>
+</idea-plugin>
