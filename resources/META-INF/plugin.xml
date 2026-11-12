@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>dev.nuclearlang</id>
   <name>NuclearLang</name>
-  <version>0.37.2</version>
+  <version>0.44.0</version>
   <vendor>NuclearLang</vendor>
   <idea-version since-build="251"/>
   <description><![CDATA[
@@ -48,6 +48,7 @@
     <toolWindow id="Nuclear Error" anchor="right" secondary="true" icon="AllIcons.General.Error"
                 factoryClass="dev.nuclearlang.editor.NuclearDebug$ErrorWindow"/>
     <toolWindow id="Nuclear HTTP" anchor="left" icon="/icons/nuc.svg" factoryClass="dev.nuclearlang.editor.NuclearHttp$Window"/>
+    <toolWindow id="Nuclear Loop" anchor="bottom" icon="/icons/nuc.svg" factoryClass="dev.nuclearlang.editor.NuclearLoop$Window"/>
     <notificationGroup id="NuclearLang" displayType="BALLOON"/>
     <enterHandlerDelegate implementation="dev.nuclearlang.editor.NuclearCommentEnter"/>
   </extensions>
@@ -74,6 +75,10 @@
       <action id="dev.nuclearlang.HttpWindow" text="Nuclear HTTP" description="Endpoints of every project, contracts and an HTTP client"
               class="dev.nuclearlang.editor.NuclearHttp$Open">
         <keyboard-shortcut keymap="$default" first-keystroke="alt shift H"/>
+      </action>
+      <action id="dev.nuclearlang.LoopWindow" text="Nuclear Loop" description="Specs through plan, code, tests, security, artifacts and deploy (nuclear-loop)"
+              class="dev.nuclearlang.editor.NuclearLoop$Open">
+        <keyboard-shortcut keymap="$default" first-keystroke="alt shift P"/>
       </action>
     </group>
   </actions>
